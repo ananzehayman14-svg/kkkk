@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Medicinal Chemistry VR - Final Project</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene renderer="antialias: true; colorManagement: true">
+      
+      <a-assets>
+        <a-asset-item id="muscarinic" src="4DAJ.glb"></a-asset-item>
+        <a-asset-item id="nicotinic" src="1UW6.glb"></a-asset-item>
+        <a-asset-item id="ach" src="acetylcholine.glb"></a-asset-item>
+      </a-assets>
+
+      <a-entity environment="preset: starry; ground: flat; groundColor: #050505; grid: dots"></a-entity>
+
+      <a-light type="ambient" intensity="0.5"></a-light>
+      <a-light type="point" intensity="1" position="2 4 4"></a-light>
+
+      <a-entity id="nAChR_Section" position="-4 1.5 -8">
+        <a-entity gltf-model="#nicotinic" scale="0.06 0.06 0.06"></a-entity>
+        <a-text value="Nicotinic Receptor\n(Ion Channel)" position="0 -3 0" align="center" width="5" color="#4CC3D9"></a-text>
+        
+        <a-entity id="chloride-stream">
+          <a-sphere radius="0.06" color="#00FF00" position="0 3 0" 
+                    animation="property: position; from: 0 3 0; to: 0 -3 0; dur: 1500; loop: true; easing: linear">
+          </a-sphere>
+          <a-sphere radius="0.06" color="#00FF00" position="0.1 4 -0.1" 
+                    animation="property: position; from: 0.1 4 -0.1; to: 0.1 -2 0.1; dur: 2000; loop: true; easing: linear; delay: 400">
+          </a-sphere>
+        </a-entity>
+      </a-entity>
+
+      <a-entity id="mAChR_Section" position="4 1.5 -8">
+        <a-entity gltf-model="#muscarinic" scale="0.06 0.06 0.06"></a-entity>
+        <a-text value="Muscarinic Receptor\n(GPCR)" position="0 -3 0" align="center" width="5" color="#EF2D5E"></a-text>
+      </a-entity>
+
+      <a-entity id="ACh_Ligand_Container" position="0 1.5 -4">
+        <a-entity gltf-model="#ach" scale="0.25 0.25 0.25"
+                  animation="property: position; 
+                             values: 0 0 0; -4 0 -4; -4 0 -4; 0 0 0; 4 0 -4; 4 0 -4; 0 0 0;
+                             dur: 14000; 
+                             easing: easeInOutExpo; 
+                             loop: true">
+          
+          <a-text value="Ligand: Acetylcholine" position="0 0.6 0" align="center" width="2.5" color="white"></a-text>
+          
+          <a-text value="MOLECULE DOCKED" position="0 1 0" align="center" width="3.5" color="#FFFF00"
+                  animation="property: opacity; values: 0; 1; 1; 0; 0; 1; 1; 0; dur: 14000; loop: true">
+          </a-text>
+        </a-entity>
+      </a-entity>
+
+      <a-camera position="0 1.6 0">
+        <a-cursor color="#2E8B57"></a-cursor>
+      </a-camera>
+
+    </a-scene>
+  </body>
+</html>
